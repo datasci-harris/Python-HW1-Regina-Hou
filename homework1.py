@@ -2,9 +2,9 @@
 # Spring 2024
 # Homework 1
 
-# YOUR CANVAS NAME HERE
-# YOUR CNET ID NAME HERE
-# YOUR GITHUB USER NAME HERE
+# CANVAS NAME: Regina Hou
+# CNET ID: houk
+# GITHUB USER NAME: Reginahk
 
 # Due date: Sunday April 10th before midnight
 # Write your answers in the space between the questions, and commit/push only this file to your repo.
@@ -15,7 +15,10 @@
 # Question 1.1: Using a for loop, write code that takes in any list of objects, then prints out:
 # "The value at position __ is __" for every element in the loop, where the first blank is the
 # index location and the second blank the object at that index location.
+my_list = ["Spring", "Summer", "Autumn", "Winter"]
 
+for index, value in enumerate(my_list):
+    print(f"The value at position {index} is {value}")
 
 # Question 1.2: A palindrome is a word or phrase that is the same both forwards and backwards. Write
 # code that takes a variable of any string, then tests to see whether it qualifies as a palindrome.
@@ -23,6 +26,18 @@
 # rejecting the word "Microsoft" and the phrase "This isn't a palindrome". Print the results of these
 # four tests.
 
+test_cases = [
+    "radar",
+    "A man, a plan, a canal, Panama!",
+    "hello",
+    "not a palindrome"
+]
+for test_case in test_cases:
+    clean_s = ''.join(char.lower() for char in test_case if char.isalnum())
+    if clean_s == clean_s[::-1]:
+        print(f'"{test_case}" is a palindrome')
+    else:
+        print(f'"{test_case}" is not a palindrome')
 
 # Question 1.3: The code below pauses to wait for user input, before assigning the user input to the
 # variable. Beginning with the given code, check to see if the answer given is an available
