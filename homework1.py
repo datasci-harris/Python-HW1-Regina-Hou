@@ -16,7 +16,6 @@
 # "The value at position __ is __" for every element in the loop, where the first blank is the
 # index location and the second blank the object at that index location.
 my_list = ["Spring", "Summer", "Autumn", "Winter"]
-
 for index, value in enumerate(my_list):
     print(f"The value at position {index} is {value}")
 
@@ -46,18 +45,28 @@ for test_case in test_cases:
 # them pick again. Repeat until they pick a valid vegetable.
 available_vegetables = ['carrot', 'kale', 'broccoli', 'pepper']
 choice = input('Please pick a vegetable I have available: ')
-
+while True:
+    user_input = input("Please pick a vegetable: ").lower()  
+    if user_input in available_vegetables:
+        print(f"You can have {user_input}!")
+        break 
+    else:
+        print("Invalid choice. Please pick again.")
 
 # Question 1.4: Write a list comprehension that starts with any list of strings and returns a new
 # list that contains each string in all lower-case letters, unless the modified string begins with
 # the letter "a" or "b", in which case it should drop it from the result.
-
+original_list = ["apple", "banana", "orange", "strewberry", "cherry", "grape"]
+modified_list = [word.lower() for word in original_list if not (word.lower().startswith("a") or word.lower().startswith("b"))]
+print(modified_list)
 
 # Question 1.5: Beginning with the two lists below, write a single dictionary comprehension that
 # turns them into the following dictionary: {'IL':'Illinois', 'IN':'Indiana', 'MI':'Michigan', 'WI':'Wisconsin'}
 short_names = ['IL', 'IN', 'MI', 'WI']
 long_names  = ['Illinois', 'Indiana', 'Michigan', 'Wisconsin']
 
+state_dict = {short_names[i]: long_names[i] for i in range(len(short_names))}
+print(state_dict)
 
 #############
 # Part 2: Functions and classes (must be answered using functions\classes)
@@ -70,8 +79,16 @@ long_names  = ['Illinois', 'Indiana', 'Michigan', 'Wisconsin']
 # your function generates (e.g. ["big", "big", "small"]).
 
 start_list = [(10, 0), (100, 6), (0, 0), (-15, -100), (5, 4)]
-
-
+def sum_comparison (num1, num2):
+    total = num1 + num2
+    if total > 10:
+        return "big"
+    elif total == 10:
+        return "just right"
+    else:
+        return "small"
+results = [sum_comparison(num1, num2) for num1, num2 in start_list]
+print(results)
 
 # Question 2.2: The following code is fully-functional, but uses a global
 # variable and a local variable. Re-write it to work the same, but using one
@@ -84,6 +101,11 @@ def my_func():
     return a + b
 x = my_func()
 
+def my_func(a):
+    b = 40
+    return a+b
+
+x = my_func(10)
 
 # Question 2.3: Write a function that can generate a random password from
 # upper-case and lower-case letters, numbers, and special characters 
