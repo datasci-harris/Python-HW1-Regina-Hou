@@ -131,16 +131,18 @@ def generate_password(length, special_chars=True, numbers=True):
         pool += "!@#$%^&*"
     if numbers:
         pool += string.digits
-    
-   
-    secure_random = random.SystemRandom()
 
-    password = ''.join(secure_random.choice(pool) for _ in range(length))
+    password = ''
+    
+    for _ in range(length):
+        password += random.choice(pool)
+    
     return password
 
 print(generate_password(12)) 
-print(generate_password(10, special_chars=False))  # Generate a password without special characters
-print(generate_password(8, numbers=False))  # Generate a password without numbers
+print(generate_password(10, special_chars=False))  
+print(generate_password(8, numbers=False)) 
+
 
         
   
@@ -153,6 +155,22 @@ print(generate_password(8, numbers=False))  # Generate a password without number
 # drama), and one for the rating you personally give the movie on a scale 
 # from 0 (worst) to 5 (best). Store those the details of the movie in the 
 # instance.
+
+class MovieDatabase:
+    def __init__(self, creator_name):
+        self.creator_name = creator_name
+        self.movies = []  
+    def add_movie(self, movie_name, genre, rating):
+        if 0 <= rating <= 5:
+            movie_details = {
+                "name": movie_name,
+                "genre": genre,
+                "rating": rating
+            }
+            self.movies.append(movie_details)
+        else:
+            print("Rating should be between 0 and 5.")
+
 #
 # The second, named what_to_watch, which randomly picks one movie in the
 # instance of the database. Tell the user what to watch tonight,
@@ -160,6 +178,26 @@ print(generate_password(8, numbers=False))  # Generate a password without number
 # print statement that gives all of the info stored about that movie.
 # Make sure it does not crash if called before any movies are in the
 # database.
-#
+# ;;
+         
+def what_to_watch(self):
+        if self.movies:
+            random_movie = random.choice(self.movies)
+            print(f"Tonight, courtesy of {self.creator_name}, you should watch:")
+            print(f"Movie Name: {random_movie['name']}")
+            print(f"Genre: {random_movie['genre']}")
+            print(f"Rating: {random_movie['rating']}")
+        else:
+            print("There are no movies in the database yet.")
+
 # Finally, create one instance of your new class, and add four movies to
 # it. Call your what_to_watch method once at the end.
+
+my_movie_database = MovieDatabase("Regina Hou")
+my_movie_database.add_movie("Harry Potter", "Fantasy", 5)
+my_movie_database.add_movie("The Hunger Game", "Science Fiction", 4)
+my_movie_database.add_movie("The Godfather", "Crime", 3)
+my_movie_database.add_movie("Pride and Prejudice", "Romance", 2)
+my_movie_database.what_to_watch()
+
+
