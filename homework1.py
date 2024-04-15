@@ -119,7 +119,30 @@ x = my_func(10)
 # libraries below in your solution:
 #import random
 #from numpy import random
-  
+import random
+import string
+
+def generate_password(length, special_chars=True, numbers=True):
+    if length < 8 or length > 16:
+        print("Password length must be between 8 and 16.")
+        return
+        pool = string.ascii_letters
+    if special_chars:
+        pool += "!@#$%^&*"
+    if numbers:
+        pool += string.digits
+    
+   
+    secure_random = random.SystemRandom()
+
+    password = ''.join(secure_random.choice(pool) for _ in range(length))
+    return password
+
+print(generate_password(12)) 
+print(generate_password(10, special_chars=False))  # Generate a password without special characters
+print(generate_password(8, numbers=False))  # Generate a password without numbers
+
+        
   
 # Question 2.4: Create a class named MovieDatabase that takes one argument
 # when an instance is created which stores the name of the person creating
